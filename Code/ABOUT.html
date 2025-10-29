@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+<script>
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user.email);
+        // Example: dynamically show profile link in navbar
+        const navbarLinks = document.getElementById("navbar-links");
+        if (navbarLinks && !document.getElementById("profileNav")) {
+            const profileLi = document.createElement("li");
+            profileLi.id = "profileNav";
+            profileLi.innerHTML = `<a href="profile.html">PROFILE</a>`;
+            navbarLinks.appendChild(profileLi);
+        }
+    } else {
+        console.log("User is NOT logged in");
+        // Optional: redirect to login page if needed
+        // window.location.href = "login.html";
+    }
+});
+</script>
+
+    <meta charset="UTF-8">
+    <title>About - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="main">
+    <!-- NAVBAR -->
+    <div class="navbaar">
+            <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="SERVICE.html">SERVICES</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="ABOUT.html">ABOUT</a></li>
+                <li><a href="CONTACT.html">CONTACT</a></li>
+                <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+            </ul>
+        </div>
+        <form class="search" id="searchForm">
+            <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>  
+        </div>
+    </div>
+
+    <!-- ABOUT US MAIN SECTION -->
+    <div class="section about-section">
+        <h1>About Us</h1>
+        <p>
+            Ian & Shan’s Literary House is a hybrid bookstore-library-café in Jamaica offering a curated global book collection,
+            lending services, a back-to-school supply shop, a Bible & philosophy section, computer access, and a cozy café.
+            We provide a welcoming environment for families, students, educators, creatives, and tourists.
+        </p>
+    </div>
+
+    <!-- MISSION & VISION -->
+    <section class="mission-section section">
+        <h2>Our Mission</h2>
+        <p>To foster a love of reading, learning, and community through a hybrid bookstore-library-café space that nurtures creativity, literacy, and cultural engagement in Jamaica.</p>
+        <h2>Our Vision</h2>
+        <p>To become Jamaica’s premier destination for book lovers, students, educators, and families seeking both knowledge and leisure in one welcoming space.</p>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-choose-us section">
+        <h2>Why Choose Ian & Shan’s Literary House?</h2>
+        <ul>
+            <li>Hybrid experience: Buy, borrow, read, and relax all under one roof.</li>
+            <li>Curated global and Caribbean book collections.</li>
+            <li>Membership perks including borrowing privileges and café discounts.</li>
+            <li>Special sections for children, students, and professionals.</li>
+            <li>Community-driven events, storytelling sessions, and workshops.</li>
+            <li>Quiet café & computer access for research and work.</li>
+        </ul>
+    </section>
+
+    <!-- MEET THE FOUNDERS -->
+    <section class="founders-section section">
+        <h2>Meet the Founders</h2>
+        <div class="founders">
+            <div class="founder">
+                <img src="ianAkdogan.jpg" alt="Ian" class="founder-img">
+                <h3>Ian Akdogan</h3>
+                <p>Co-founder, literary curator, and community engagement lead. Passionate about Caribbean literature and nurturing young readers.</p>
+            </div>
+            <div class="founder">
+                <img src="shanoyab.jpg" alt="Shan" class="founder-img">
+                <h3>Shanoya Akdogan</h3>
+                <p>Co-founder, operations & café manager. Ensures smooth daily operations and creates a welcoming environment for all visitors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section class="values-section section">
+        <h2>Our Core Values</h2>
+        <ul>
+            <li>Community: Building strong connections through books and events.</li>
+            <li>Learning: Providing access to knowledge for all ages.</li>
+            <li>Culture: Celebrating Caribbean and global literature.</li>
+            <li>Inclusivity: Welcoming everyone in a safe, inspiring environment.</li>
+            <li>Innovation: Blending physical and digital experiences thoughtfully.</li>
+        </ul>
+    </section>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+<!-- SEARCH SCRIPT -->
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!query) { alert("Please enter something to search."); return; }
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]}
+    ];
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) { window.location.href = result.url; } 
+    else { alert("No results found for: " + query); }
+});
+</script>
+
+<!-- THEME TOGGLE SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+

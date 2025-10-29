@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+<script>
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user.email);
+        // Example: dynamically show profile link in navbar
+        const navbarLinks = document.getElementById("navbar-links");
+        if (navbarLinks && !document.getElementById("profileNav")) {
+            const profileLi = document.createElement("li");
+            profileLi.id = "profileNav";
+            profileLi.innerHTML = `<a href="profile.html">PROFILE</a>`;
+            navbarLinks.appendChild(profileLi);
+        }
+    } else {
+        console.log("User is NOT logged in");
+        // Optional: redirect to login page if needed
+        // window.location.href = "login.html";
+    }
+});
+</script>
+
+    <meta charset="UTF-8">
+    <title>Membership - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="main">
+    <!-- NAVBAR -->
+    <div class="navbaar">
+            <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="SERVICE.html">SERVICES</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="ABOUT.html">ABOUT</a></li>
+                <li><a href="CONTACT.html">CONTACT</a></li>
+                <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+            </ul>
+        </div>
+        <form class="search" id="searchForm">
+            <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>  
+        </div>
+    </div>
+
+    <!-- MEMBERSHIP PLANS -->
+    <section class="membership-section section">
+        <h1>Membership Plans</h1>
+        <p class="intro-text">Choose the plan that fits you and enjoy our full range of literary perks!</p>
+        <div class="plans">
+            <div class="plan">
+                <h2>Basic</h2>
+                <p class="price">JMD 1,000/month</p>
+                <ul>
+                    <li>Borrow 2 books/month</li>
+                    <li>In-store reading</li>
+                    <li>Event invites</li>
+                </ul>
+                <button class="join-btn">Join Now</button>
+            </div>
+            <div class="plan">
+                <h2>Standard</h2>
+                <p class="price">JMD 1,800/month</p>
+                <ul>
+                    <li>Borrow 5 books/month</li>
+                    <li>Reserve titles</li>
+                    <li>Café discounts</li>
+                </ul>
+                <button class="join-btn">Join Now</button>
+            </div>
+            <div class="plan featured">
+                <h2>Premium</h2>
+                <p class="price">JMD 3,000/month</p>
+                <ul>
+                    <li>Borrow 10 books/month</li>
+                    <li>Access eBook portal</li>
+                    <li>Printing & café perks</li>
+                </ul>
+                <button class="join-btn">Join Now</button>
+            </div>
+            <div class="plan">
+                <h2>Family</h2>
+                <p class="price">JMD 4,000/month</p>
+                <ul>
+                    <li>Shared borrowing for up to 4 people</li>
+                    <li>Family events</li>
+                    <li>Café perks</li>
+                </ul>
+                <button class="join-btn">Join Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBERSHIP BENEFITS -->
+    <section class="membership-benefits section">
+        <h2>Membership Benefits</h2>
+        <div class="benefits-cards">
+            <div class="benefit">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Unlimited Reading</h3>
+                <p>Access a wide variety of books and literary materials in-store.</p>
+            </div>
+            <div class="benefit">
+                <i class="fa-solid fa-tag"></i>
+                <h3>Café Discounts</h3>
+                <p>Enjoy exclusive member discounts at our in-house café.</p>
+            </div>
+            <div class="benefit">
+                <i class="fa-solid fa-calendar-days"></i>
+                <h3>Event Invites</h3>
+                <p>Get priority invitations to workshops, book launches, and more.</p>
+            </div>
+            <div class="benefit">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>eBook Access</h3>
+                <p>Premium members can borrow and read eBooks online anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO JOIN -->
+    <section class="membership-signup section">
+        <h2>How to Join</h2>
+        <div class="join-steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3>Choose a Plan</h3>
+                <p>Select the membership plan that suits your reading needs.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3>Create an Account</h3>
+                <p>Sign up with your email and personal details to get started.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3>Make Payment</h3>
+                <p>Pay securely online or in-store to activate your membership.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">4</span>
+                <h3>Start Enjoying Perks</h3>
+                <p>Borrow books, attend events, and enjoy all membership benefits.</p>
+            </div>
+        </div>
+        <a href="signup.html" class="signup-btn">Sign Up Now</a>
+    </section>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan’s Literary House | All Rights Reserved
+</footer>
+
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+    if (!query) {
+        alert("Please enter something to search.");
+        return;
+    }
+
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "events"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]},
+        {name: "Membership", url: "membership.html", keywords: ["membership", "plans", "subscribe"]}
+    ];
+
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) window.location.href = result.url;
+    else alert("No results found for: " + query);
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+<script src="membership.js"></script>
+
+</body>
+</html>
+
+
+

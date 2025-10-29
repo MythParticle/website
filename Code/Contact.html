@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+<script>
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user.email);
+        // Example: dynamically show profile link in navbar
+        const navbarLinks = document.getElementById("navbar-links");
+        if (navbarLinks && !document.getElementById("profileNav")) {
+            const profileLi = document.createElement("li");
+            profileLi.id = "profileNav";
+            profileLi.innerHTML = `<a href="profile.html">PROFILE</a>`;
+            navbarLinks.appendChild(profileLi);
+        }
+    } else {
+        console.log("User is NOT logged in");
+        // Optional: redirect to login page if needed
+        // window.location.href = "login.html";
+    }
+});
+</script>
+
+    <meta charset="UTF-8">
+    <title>Contact - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="main">
+    <!-- NAVBAR -->
+    <div class="navbaar">
+            <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+        <div class="menu">
+           <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="SERVICE.html">SERVICES</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="ABOUT.html">ABOUT</a></li>
+                <li><a href="CONTACT.html" class="active">CONTACT</a></li>
+                <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+            </ul>
+        </div>
+        <form class="search" id="searchForm">
+            <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>  
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="section">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you! Reach out via email, phone, visit us in person, or fill out the form below.</p>
+    </div>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info section">
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-envelope fa-2x"></i>
+                <p>Email: <a href="mailto:ian.shan@literaryhouse.edu">ian.shan@literaryhouse.edu</a></p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-phone fa-2x"></i>
+                <p>Phone: +1 876-982-2436</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-fax fa-2x"></i>
+                <p>Fax: +1 876-572-5435</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-location-dot fa-2x"></i>
+                <p>Address: 12 New Kingston, Kingston, Jamaica</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Hours Section -->
+    <section class="business-hours section">
+        <h2>Business Hours</h2>
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-clock fa-2x"></i>
+                <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-clock fa-2x"></i>
+                <p>Saturday: 10:00 AM - 5:00 PM</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-clock fa-2x"></i>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section section">
+        <h2>Find Us Here</h2>
+        <div class="map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.6523672854587!2d-76.79256128459196!3d17.997243188154448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eddfb2dbb6e00f5%3A0x123456789abcdef!2s12%20New%20Kingston%2C%20Kingston%2C%20Jamaica!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus" 
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form section">
+        <h2>Send Us a Message</h2>
+        <form>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="cn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons section">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!query) { alert("Please enter something to search."); return; }
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]}
+    ];
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) { window.location.href = result.url; } 
+    else { alert("No results found for: " + query); }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="main shop">
+    <!-- NAVBAR -->
+   <div class="navbaar">
+        <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="SERVICE.html">SERVICES</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="ABOUT.html">ABOUT</a></li>
+            <li><a href="CONTACT.html">CONTACT</a></li>
+            <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+        </ul>
+    </div>
+    <form class="search" id="searchForm">
+        <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+        <button class="btn" type="submit">Search</button>
+    </form>
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-btn">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>  
+    </div>
+</div>
+
+
+    <!-- HERO SECTION -->
+    <div class="content">
+        <h1>Shop at <span>Ian & Shan's Literary House</span></h1>
+        <p>Explore our curated collection of books, literary merchandise, and café gift cards. Perfect for book lovers of all ages!</p>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="shop-section section">
+        <h2>Featured Products</h2>
+        <div class="product-cards">
+            <div class="product-card">
+                <img src="images/book1.jpg" alt="Book 1">
+                <h3>The Great Adventure</h3>
+                <p>JMD 1,500</p>
+                <button class="cn"><a href="#">Buy Now</a></button>
+            </div>
+            <div class="product-card">
+                <img src="images/book2.jpg" alt="Book 2">
+                <h3>Mystery Tales</h3>
+                <p>JMD 1,200</p>
+                <button class="cn"><a href="#">Buy Now</a></button>
+            </div>
+            <div class="product-card">
+                <img src="images/book3.jpg" alt="Book 3">
+                <h3>Poetry Collection</h3>
+                <p>JMD 900</p>
+                <button class="cn"><a href="#">Buy Now</a></button>
+            </div>
+            <div class="product-card">
+                <img src="images/giftcard.jpg" alt="Gift Card">
+                <h3>Gift Card</h3>
+                <p>JMD 500 – 5,000</p>
+                <button class="cn"><a href="#">Buy Now</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOP INFO / BENEFITS -->
+    <section class="shop-info section">
+        <h2>Why Shop With Us?</h2>
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-truck fa-2x"></i>
+                <p>Fast and safe delivery across Jamaica.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-book fa-2x"></i>
+                <p>Curated selection of books for all ages.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-gift fa-2x"></i>
+                <p>Special deals and gift bundles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!query) { alert("Please enter something to search."); return; }
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]},
+        {name: "Membership", url: "membership.html", keywords: ["membership", "plans", "subscribe"]}
+    ];
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) { window.location.href = result.url; } 
+    else { alert("No results found for: " + query); }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+
+</body>
+</html>

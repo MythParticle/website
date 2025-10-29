@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+<script>
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user.email);
+        // Example: dynamically show profile link in navbar
+        const navbarLinks = document.getElementById("navbar-links");
+        if (navbarLinks && !document.getElementById("profileNav")) {
+            const profileLi = document.createElement("li");
+            profileLi.id = "profileNav";
+            profileLi.innerHTML = `<a href="profile.html">PROFILE</a>`;
+            navbarLinks.appendChild(profileLi);
+        }
+    } else {
+        console.log("User is NOT logged in");
+        // Optional: redirect to login page if needed
+        // window.location.href = "login.html";
+    }
+});
+</script>
+    <meta charset="UTF-8">
+    <title>Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="main home">
+    <!-- NAVBAR -->
+    <div class="navbaar">
+        <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+        <div class="menu">
+        
+        </a>
+      </li>
+
+            <ul>
+                <li><a href="homepage.html">HOME</a></li>
+                <li><a href="SERVICE.html">SERVICES</a></li>
+                 <li><a href="shop.html">SHOP</a></li>
+                <li><a href="ABOUT.html">ABOUT</a></li>
+                <li><a href="profile.html">PROFILE</a></li>
+                <li><a href="CONTACT.html">CONTACT</a></li>
+                <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+            </ul>
+        </div>
+        <form class="search" id="searchForm">
+            <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>  
+        </div>
+    </div>
+
+    <!-- HERO CONTENT -->
+    <div class="content">
+        <h1>Ian & Shan's <span>Literary House</span></h1>
+        <p>
+            Welcome back to Jamaica’s first hybrid bookstore-library-café! Discover books, enjoy our cozy café, 
+            borrow your favorites, or explore our special sections for children, students, and creatives.
+        </p>
+    </div>
+
+    <!-- Featured Sections -->
+    <section class="featured-section section">
+        <h2>New Arrivals</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=80" alt="New Book 1">
+                <h3>Book Title 1</h3>
+                <p>Short description of the book.</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=400&q=80" alt="New Book 2">
+                <h3>Book Title 2</h3>
+                <p>Short description of the book.</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" alt="New Book 3">
+                <h3>Book Title 3</h3>
+                <p>Short description of the book.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-section section">
+        <h2>Upcoming Events</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=80" alt="Storytelling Session">
+                <h3>Storytelling Session</h3>
+                <p>Join us this weekend for children's storytelling.</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=400&q=80" alt="Author Talk">
+                <h3>Author Talk</h3>
+                <p>Meet local authors and discuss their latest works.</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" alt="Book Club Meetup">
+                <h3>Book Club Meetup</h3>
+                <p>Monthly gathering for book discussions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="membership-preview section">
+        <h2>Why Join Us?</h2>
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-book-open-reader fa-2x"></i>
+                <p>Borrow books easily with membership perks.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-coffee fa-2x"></i>
+                <p>Enjoy café discounts and cozy spaces.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-users fa-2x"></i>
+                <p>Participate in events and community activities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-home section">
+        <h2>Our Featured Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" alt="Bookstore">
+                <h3>Bookstore & Library</h3>
+                <p>Discover a curated selection of books for children, students, and adults.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Café">
+                <h3>Cozy Café</h3>
+                <p>Enjoy coffee, tea, and baked goods in our quiet reading spaces.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&q=80" alt="Children's Area">
+                <h3>Children’s Area</h3>
+                <p>Storytelling sessions, educational activities, and fun corners for kids.</p>
+            </div>
+            <div class="service-card">
+                <img src="computer.jpg" alt="Computer Access">
+
+                <h3>Computer Access</h3>
+                <p>Public PCs for browsing, research, and printing services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials section">
+        <h2>What Our Members Say</h2>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p>"A wonderful place to read, relax, and connect with fellow book lovers!"</p>
+                <span>- Sarah M.</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"The café is cozy, and the library selection is incredible."</p>
+                <span>- Michael J.</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"My kids love the storytelling sessions every weekend!"</p>
+                <span>- Tasha L.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-membership section">
+        <h2>Become a Member Today!</h2>
+        <p>Enjoy exclusive benefits, discounts, and early access to events.</p>
+        <button class="cn"><a href="MEMBERSHIP.html">Join Now</a></button>
+    </section>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+    if (!query) {
+        alert("Please enter something to search.");
+        return;
+    }
+
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]}
+    ];
+
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) {
+        window.location.href = result.url;
+    } else {
+        alert("No results found for: " + query);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+<script src="profile.js"></script>
+</body>
+</html>

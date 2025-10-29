@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+<script>
+auth.onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user.email);
+        // Example: dynamically show profile link in navbar
+        const navbarLinks = document.getElementById("navbar-links");
+        if (navbarLinks && !document.getElementById("profileNav")) {
+            const profileLi = document.createElement("li");
+            profileLi.id = "profileNav";
+            profileLi.innerHTML = `<a href="profile.html">PROFILE</a>`;
+            navbarLinks.appendChild(profileLi);
+        }
+    } else {
+        console.log("User is NOT logged in");
+        // Optional: redirect to login page if needed
+        // window.location.href = "login.html";
+    }
+});
+</script>
+
+    <meta charset="UTF-8">
+    <title>Services - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbaar">
+        <div class="nav-left">
+    <img src="logodark.PNG" alt="Logo" class="nav-logo">
+</div>
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="SERVICE.html" class="active">SERVICES</a></li>
+            <li><a href="shop.html">SHOP</a></li>
+            <li><a href="ABOUT.html">ABOUT</a></li>
+            <li><a href="CONTACT.html">CONTACT</a></li>
+            <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+        </ul>
+    </div>
+    <form class="search" id="searchForm">
+        <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+        <button class="btn" type="submit">Search</button>
+    </form>
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-btn">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>  
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+  <div class="services-section section">
+      <h1>Our Services</h1>
+      <p class="intro-text">At Ian & Shan’s Literary House, we offer a wide range of services to foster a love for reading, learning, and community engagement.</p>
+
+      <div class="services-cards">
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&h=300&q=80" alt="Bookstore & Lending Library">
+              <div class="service-text">
+                  <h2>Bookstore & Lending Library</h2>
+                  <p>Buy books or borrow from our curated collection. Specialty sections include Children, Academic, Bible & Spiritual, and Reference materials.</p>
+              </div>
+          </div>
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=400&h=300&q=80" alt="Children's Area">
+              <div class="service-text">
+                  <h2>Children’s Area</h2>
+                  <p>Comfortable reading spaces and weekend storytelling sessions. Back-to-school supplies available.</p>
+              </div>
+          </div>
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&h=300&q=80" alt="Café">
+              <div class="service-text">
+                  <h2>Café</h2>
+                  <p>Coffee, tea, baked goods, and a quiet reading environment. Members enjoy exclusive discounts.</p>
+              </div>
+          </div>
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&h=300&q=80" alt="Computer Access">
+              <div class="service-text">
+                  <h2>Computer Access</h2>
+                  <p>Public-use PCs with membership login or pay-per-hour access for research, study, and browsing.</p>
+              </div>
+          </div>
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&h=300&q=80" alt="Workshops & Events">
+              <div class="service-text">
+                  <h2>Workshops & Events</h2>
+                  <p>Join author talks, writing workshops, book clubs, and community literacy events throughout the year.</p>
+              </div>
+          </div>
+
+          <div class="service-card">
+              <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=400&h=300&q=80" alt="Membership Perks">
+
+              <div class="service-text">
+                  <h2>Membership Perks</h2>
+                  <p>Members receive special access to limited edition books, café discounts, and priority booking for events.</p>
+              </div>
+          </div>
+
+      </div>
+
+      <!-- SOCIAL ICONS -->
+      <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+      </div>
+  </div>
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+<!-- SEARCH SCRIPT -->
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "SERVICE.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "CONTACT.html", keywords: ["contact", "email", "phone"]},
+        {name: "Membership", url: "MEMBERSHIP.html", keywords: ["membership", "plans", "subscribe"]}
+    ];
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) window.location.href = result.url;
+    else alert("No results found for: " + query);
+});
+</script>
+
+<!-- THEME TOGGLE SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+

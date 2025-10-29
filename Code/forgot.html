@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password - Ian & Shan's Literary House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2deec37226.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="main forgot-page">
+    <!-- NAVBAR -->
+    <div class="navbaar">
+        <div class="nav-left">
+            <img src="logodark.PNG" alt="Logo" class="nav-logo">
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="SERVICE.html">SERVICES</a></li>
+                <li><a href="shop.html">SHOP</a></li>
+                <li><a href="ABOUT.html">ABOUT</a></li>
+                <li><a href="CONTACT.html">CONTACT</a></li>
+                <li><a href="MEMBERSHIP.html">MEMBERSHIP</a></li>
+            </ul>
+        </div>
+        <form class="search" id="searchForm">
+            <input class="srch" type="search" id="searchInput" placeholder="Search pages">
+            <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="theme-toggle-container">
+            <button id="theme-toggle" class="theme-btn">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+
+    <h1>Reset Your Password</h1>
+    <p>Enter your email to receive a password reset link.</p>
+
+    <div class="forgot-container">
+        <form class="forgot-form" id="forgot-form">
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit" class="forgot-btn">Send Reset Link</button>
+            <div class="login-links">
+                <p>Remembered your password? <a href="login.html">Login here</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Ian & Shan's Literary House. All Rights Reserved.
+</footer>
+
+<!-- Firebase Modular SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDjSE5qV-U2MpRknwrma6KntqNZY8Iigpw",
+    authDomain: "ianshanlh.firebaseapp.com",
+    projectId: "ianshanlh",
+    storageBucket: "ianshanlh.firebasestorage.app",
+    messagingSenderId: "430636695542",
+    appId: "1:430636695542:web:9a58b1a43750073b9851d7",
+    measurementId: "G-ZFRTPB4G6E"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+
+  // PASSWORD RESET
+  const forgotForm = document.querySelector(".forgot-form");
+  forgotForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = forgotForm["email"].value;
+
+      sendPasswordResetEmail(auth, email)
+          .then(() => {
+              alert("Password reset email sent!");
+          })
+          .catch((error) => {
+              alert(error.message);
+          });
+  });
+</script>
+
+<script>
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!query) { alert("Please enter something to search."); return; }
+
+    const pages = [
+        {name: "Home", url: "index.html", keywords: ["home", "books", "literacy"]},
+        {name: "About", url: "about.html", keywords: ["about", "story", "history"]},
+        {name: "Services", url: "service.html", keywords: ["services", "cafe", "membership"]},
+        {name: "Contact", url: "contact.html", keywords: ["contact", "email", "phone"]}
+    ];
+
+    const result = pages.find(page => page.keywords.some(keyword => query.includes(keyword)));
+    if (result) { window.location.href = result.url; }
+    else { alert("No results found for: " + query); }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+
+    toggleButton.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+            localStorage.setItem("theme", "light");
+        } else {
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
